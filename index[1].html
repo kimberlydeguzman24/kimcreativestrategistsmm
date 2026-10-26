@@ -1,0 +1,1092 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Kim Creative Alchemist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  /* wine & rose gold — token names kept so every component re-themes from here */
+  --bg:#16070B;            /* wine-black */
+  --surface-1:#220B11;
+  --surface-2:#2E0F18;
+  --glass:rgba(34,10,16,.55);
+  --red:#9E1230;           /* cherry: fills only */
+  --red-bright:#E7B29C;    /* rose gold: accent text, lines, highlights */
+  --red-line:rgba(231,178,156,.28);
+  --red-line-soft:rgba(231,178,156,.15);
+  --blush:#F2D3C9;
+  --wine-ink:#2A0710;
+  --text:#F6EAE4;          /* warm ivory */
+  --muted:#D2BAB3;
+  --dim:#A38C88;
+  --gold-text:linear-gradient(100deg,#F7D9CB 0%,#E2A68D 42%,#F3CDBC 68%,#D8957B 100%);
+  --display:"Instrument Serif","Bodoni 72","Didot",Georgia,serif;
+  --body:"Jost","Futura","Century Gothic","Helvetica Neue",Arial,sans-serif;
+  --mono:"Jost","Futura","Century Gothic","Helvetica Neue",Arial,sans-serif;
+  --r-lg:24px;
+  --r-md:18px;
+  --r-sm:12px;
+  --gutter:clamp(16px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.025em;line-height:1.02}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--red-bright);outline-offset:3px;border-radius:4px}
+
+/* ---------- drifting smoke behind the whole page ---------- */
+.smoke{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.smoke-layer{
+  position:absolute;inset:-28%;
+  background:url("smoke.jpg") center/cover no-repeat;
+  mix-blend-mode:lighten;
+  will-change:transform;
+}
+.smoke-b{background-position:68% 28%;background-size:170%;opacity:.78}
+.smoke::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(58% 42% at 19% 30%,rgba(22,7,11,.62),transparent 60%);
+}
+
+/* ---------- shared ---------- */
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--gutter)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0}
+.eyebrow .num{color:var(--red-bright)}
+.rd{color:var(--red-bright)}
+.lede{color:var(--muted);max-width:62ch}
+.section{padding-block:clamp(72px,10vw,132px);position:relative}
+.section + .section{border-top:1px solid rgba(255,255,255,.055)}
+.sec-head{display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(36px,5vw,56px)}
+h2.big{font-size:clamp(34px,5.6vw,68px);font-weight:400}
+h3.mid{font-size:clamp(24px,3vw,36px);font-weight:400}
+.rule{height:1px;background:linear-gradient(90deg,var(--red-line),transparent);border:0;margin:0}
+
+.glass{
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--red-line-soft);
+  border-radius:var(--r-lg);
+  transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;
+}
+.glass:hover{
+  border-color:var(--red-line);
+  box-shadow:0 0 0 1px rgba(158,18,48,.12),0 18px 60px -28px rgba(158,18,48,.55),inset 0 0 44px -22px rgba(231,178,156,.5);
+  transform:translateY(-3px);
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em;
+  padding:13px 22px;border-radius:999px;text-decoration:none;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease;
+}
+.btn-solid{background:var(--red);color:#fff;box-shadow:0 10px 34px -16px rgba(158,18,48,.9)}
+.btn-solid:hover{background:var(--red-bright);transform:translateY(-2px);box-shadow:0 16px 44px -14px rgba(231,178,156,.85)}
+.btn-ghost{border:1px solid var(--red-line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--red-bright);transform:translateY(-2px);box-shadow:0 0 34px -12px rgba(231,178,156,.6)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:rgba(22,7,11,.82);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-in{display:flex;align-items:center;gap:20px;min-height:62px;flex-wrap:wrap;padding-block:10px}
+.brand{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:9px}
+.brand i{width:7px;height:7px;border-radius:50%;background:var(--red-bright);box-shadow:0 0 12px 2px rgba(231,178,156,.8);font-style:normal}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.nav-links a{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:7px 10px;border-radius:999px;transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(158,18,48,.16)}
+.nav .btn{padding:10px 18px;font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding-block:clamp(56px,8vw,96px) clamp(64px,9vw,110px)}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr)}
+.hero-copy{position:relative;z-index:2;max-width:880px}
+.hero h1{font-size:clamp(42px,7.4vw,86px);font-weight:400;margin:20px 0 26px}
+.hero h1 em{font-style:normal;color:var(--red-bright);text-shadow:0 0 38px rgba(231,178,156,.45)}
+.hero .sub{font-size:clamp(17px,2vw,20px);color:var(--text);max-width:34ch;margin-bottom:14px}
+.hero .sub b{color:var(--red-bright);font-weight:600}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-stat{display:flex;align-items:center;gap:12px;margin-top:34px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim);flex-wrap:wrap}
+.hero-stat b{color:var(--text);font-weight:500}
+.art-tint{
+  position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:overlay;
+  background:linear-gradient(205deg,rgba(158,18,48,.42),transparent 52%,rgba(231,178,156,.26));
+}
+.art-vignette{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(118% 86% at 54% 34%,transparent 38%,rgba(22,7,11,.72) 100%);
+}
+
+/* ---------- thesis / marquee ---------- */
+.thesis-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.card{padding:clamp(22px,2.6vw,32px)}
+.c-6{grid-column:span 6}.c-5{grid-column:span 5}.c-4{grid-column:span 4}.c-7{grid-column:span 7}.c-3{grid-column:span 3}.c-8{grid-column:span 8}.c-12{grid-column:span 12}
+.step-n{font-family:var(--mono);font-size:12px;color:var(--red-bright);letter-spacing:.14em;display:block;margin-bottom:10px}
+.quote-card{display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(150deg,rgba(158,18,48,.14),rgba(22,7,11,.6))}
+.quote-card p{font-family:var(--display);font-weight:600;font-size:clamp(19px,2.2vw,26px);line-height:1.12;letter-spacing:-.02em}
+.marquee{margin-top:40px;overflow:hidden;border-block:1px solid rgba(255,255,255,.07);padding-block:16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee ul{display:flex;gap:34px;width:max-content;font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.marquee li{display:flex;align-items:center;gap:34px;white-space:nowrap}
+.marquee li::after{content:"✦";color:var(--red-bright)}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,56px);align-items:center}
+.portrait{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;
+  border:1px solid var(--red-line);
+  background:radial-gradient(100% 80% at 50% 10%,rgba(158,18,48,.2),transparent 60%),linear-gradient(160deg,#2E0F18,#16070B);
+  display:flex;align-items:flex-end;
+}
+.portrait img{
+  position:absolute;left:0;top:0;width:100%;height:100%;
+  object-fit:cover;object-position:52% 12%;
+  filter:contrast(1.05) saturate(.96) brightness(.92);
+}
+.portrait::after{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:linear-gradient(to top,rgba(22,7,11,.92) 0%,rgba(22,7,11,.42) 26%,transparent 52%);
+}
+.portrait span{position:relative;z-index:4;margin:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text)}
+.pull{border-left:2px solid var(--red);padding-left:18px;margin-top:26px;font-family:var(--display);font-weight:600;font-size:clamp(17px,2vw,21px);line-height:1.25;color:var(--text)}
+
+/* ---------- services tabs ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tab{
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--muted);
+  transition:.25s ease;
+}
+.tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 30px -10px rgba(231,178,156,.8)}
+.tab:hover{color:#fff;border-color:var(--red-line)}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,44px);padding:clamp(26px,3.4vw,44px)}
+.panel h3{margin:12px 0 14px}
+.panel ul.ticks{display:grid;gap:12px;align-content:start}
+.panel ul.ticks li{display:flex;gap:12px;color:var(--muted);font-size:15.5px;line-height:1.45}
+.panel ul.ticks li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--red-bright);box-shadow:0 0 9px 1px rgba(231,178,156,.7)}
+
+/* ---------- work ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filter{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding:9px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--muted);transition:.25s}
+.filter[aria-pressed="true"]{border-color:var(--red);color:#fff;background:rgba(158,18,48,.18)}
+.filter:hover{color:#fff}
+.filter b{color:var(--red-bright);font-weight:500;margin-left:6px}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.work-card{padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.work-card .idx{position:absolute;top:18px;right:22px;font-family:var(--display);font-weight:400;font-size:44px;color:rgba(158,18,48,.22);letter-spacing:-.04em}
+.work-card h3{font-size:26px;font-weight:400}
+.work-card p{color:var(--muted);font-size:15px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--red-line-soft);color:var(--muted)}
+.link{font-family:var(--display);font-weight:600;font-size:14.5px;color:var(--red-bright);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.link:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- process ---------- */
+.proc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;counter-reset:s}
+.proc .card{position:relative}
+.proc h4{font-size:20px;font-weight:400;margin:10px 0 10px}
+.proc p{color:var(--muted);font-size:15px}
+
+/* ---------- offers ---------- */
+.path{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim);margin-bottom:26px}
+.path span b{color:var(--red-bright);font-weight:500;margin-right:6px}
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:18px}
+.offer{padding:28px;display:flex;flex-direction:column;gap:14px}
+.offer .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-bright)}
+.offer h4{font-size:22px;font-weight:400;line-height:1.1}
+.offer .claim{color:var(--text);font-size:15.5px}
+.offer .note{color:var(--dim);font-size:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin-top:auto}
+.offer ul.ticks{display:grid;gap:9px}
+.offer ul.ticks li{display:flex;gap:10px;color:var(--muted);font-size:14.5px;line-height:1.4}
+.offer ul.ticks li::before{content:"";flex:none;width:5px;height:5px;margin-top:8px;border-radius:50%;background:var(--red)}
+.most{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:24px;text-align:center}
+
+/* ---------- playbook ---------- */
+.plat{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.plat-card{padding:24px;display:flex;flex-direction:column;gap:14px}
+.plat-card .visual{
+  position:relative;aspect-ratio:16/9;border-radius:var(--r-sm);overflow:hidden;
+  border:1px solid var(--red-line);
+  background:url("social/texture.jpg") center/160% no-repeat,linear-gradient(150deg,rgba(158,18,48,.12),rgba(22,7,11,.5));
+  display:flex;align-items:center;justify-content:center;
+}
+.plat .plat-card:nth-child(2n) .visual{background-position:32% 68%}
+.plat .plat-card:nth-child(3n) .visual{background-position:74% 24%}
+.plat .plat-card:nth-child(4n) .visual{background-position:18% 22%}
+.plat .plat-card:nth-child(5n) .visual{background-position:60% 80%}
+.plat-card .visual::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 70% at 50% 50%,rgba(22,7,11,.5),rgba(22,7,11,.72));
+}
+.plat-card .badge{
+  position:relative;isolation:isolate;z-index:2;width:68px;height:68px;border-radius:20%;overflow:hidden;
+  border:1px solid rgba(231,178,156,.45);
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.95);
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.plat-card .badge img{width:100%;height:100%;object-fit:cover;display:block}
+.plat-card:hover .badge{transform:translateY(-3px) scale(1.04);border-color:var(--red-bright);box-shadow:0 16px 36px -14px rgba(231,178,156,.8)}
+.plat-card h4{font-size:21px;font-weight:400}
+.plat-card .way{color:var(--text);font-size:15px}
+.plat-card .way b{color:var(--red-bright);font-weight:500}
+.plat-card ul{display:grid;gap:9px}
+.plat-card li{display:flex;gap:10px;color:var(--muted);font-size:14.5px;line-height:1.45}
+.plat-card li::before{content:"";flex:none;width:5px;height:5px;margin-top:8px;border-radius:50%;background:var(--red)}
+
+/* ---------- data ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+.kpi{padding:20px 22px;display:grid;gap:4px}
+.kpi .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:13px;color:var(--dim)}
+.data-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.bars{display:grid;gap:14px;margin-top:18px}
+.bar-row{display:grid;grid-template-columns:62px 1fr 46px;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.bar{display:block;height:12px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--red),var(--red-bright));box-shadow:0 0 16px -2px rgba(231,178,156,.8)}
+.bar-row .n{text-align:right;color:var(--text);font-variant-numeric:tabular-nums}
+.steps li{display:block}
+.tbl-wrap{overflow-x:auto;margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:430px;font-size:14px}
+th,td{text-align:right;padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.08);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:400}
+td{color:var(--muted)}
+td:first-child{color:var(--text)}
+.footnote{font-size:13px;color:var(--dim);margin-top:14px;max-width:70ch}
+.flag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-bright);border:1px solid var(--red-line);padding:6px 12px;border-radius:999px}
+
+/* ---------- social tiles ---------- */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.social-block{display:grid;gap:12px;justify-items:start}
+.social{display:flex;gap:10px;flex-wrap:wrap}
+.social a,.social span.tile{
+  position:relative;display:block;width:52px;height:52px;flex:none;
+  border-radius:20%;overflow:hidden;border:1px solid rgba(231,178,156,.32);
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.social img{width:100%;height:100%;object-fit:cover;display:block}
+.social a::after,.social span.tile::after{
+  content:"";position:absolute;inset:0;background:rgba(22,7,11,.18);transition:background .3s ease;
+}
+.social a:hover,.social a:focus-visible{
+  transform:translateY(-4px);border-color:var(--red-bright);
+  box-shadow:0 14px 32px -14px rgba(231,178,156,.9),0 0 24px -6px rgba(231,178,156,.65);
+}
+.social a:hover::after,.social a:focus-visible::after{background:rgba(22,7,11,.08)}
+.social span.tile{opacity:.45;border-style:dashed}
+@media (max-width:520px){ .social a,.social span.tile{width:44px;height:44px} }
+
+/* ---------- inquiry + footer ---------- */
+.inq{text-align:center;display:grid;justify-items:center;gap:20px}
+.inq h2{max-width:18ch}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red-bright);box-shadow:0 0 12px 3px rgba(231,178,156,.8)}
+.avail{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+footer{border-top:1px solid rgba(255,255,255,.07);padding-block:44px 52px}
+.foot-grid{display:flex;gap:26px;flex-wrap:wrap;justify-content:space-between;align-items:flex-start}
+.foot-grid p,.foot-grid a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+.foot-links a{text-decoration:none}
+.foot-links a:hover{color:var(--red-bright)}
+
+@media (max-width:900px){
+  .hero-grid,.about-grid,.panel,.data-grid{grid-template-columns:1fr}
+  .hero-grid{gap:34px}
+  .thesis-grid > *{grid-column:span 12 !important}
+  .nav-links{order:3;margin-left:0;width:100%}
+  .nav .btn{margin-left:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition-duration:.01ms !important}
+}
+
+/* ================= wine & rose-gold theme layer ================= */
+/* serif display is a single-weight face: never let the browser fake bold */
+h1,h2,h3,h4,.brand,.quote-card p,.pull,.kpi .v,.work-card .idx{font-weight:400}
+h1,h2,h3,h4{letter-spacing:-.01em;line-height:.98}
+h2.big{font-size:clamp(42px,6.6vw,88px)}
+h3.mid{font-size:clamp(30px,3.6vw,44px)}
+.hero h1{font-size:clamp(52px,8.6vw,118px);margin:22px 0 28px}
+.hero h1 em,h2 .rd{
+  font-style:italic;background:var(--gold-text);-webkit-background-clip:text;background-clip:text;
+  color:transparent;text-shadow:none;filter:drop-shadow(0 0 26px rgba(231,178,156,.22));
+}
+.rd{font-style:italic}
+.hero .sub b{font-family:var(--display);font-style:italic;font-weight:400;font-size:1.28em;letter-spacing:0;color:var(--red-bright)}
+.eyebrow,.hero-stat{letter-spacing:.24em}
+.brand{font-size:24px;letter-spacing:0}
+.work-card h3{font-size:34px}
+.proc h4,.offer h4,.plat-card h4{font-size:28px;line-height:1.02}
+.kpi .v{font-size:clamp(38px,4.4vw,54px);letter-spacing:0}
+.quote-card p{font-style:italic;font-size:clamp(26px,2.8vw,34px);line-height:1.05;letter-spacing:0}
+.pull{font-style:italic;font-size:clamp(22px,2.4vw,28px);line-height:1.15;border-left-color:var(--red-bright)}
+.work-card .idx{font-style:italic;font-size:64px;line-height:1;color:rgba(231,178,156,.30);letter-spacing:0;top:14px}
+.proc .step-n{font-family:var(--display);font-style:italic;font-size:56px;line-height:1;letter-spacing:0;margin-bottom:4px}
+
+/* buttons: rose-gold lacquer, and a glassy cherry for "active" states */
+.btn{font-family:var(--body);font-weight:500;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;padding:15px 26px}
+.btn-solid{
+  color:var(--wine-ink);background:linear-gradient(135deg,#F7D9CB 0%,#E3A58C 45%,#F4CDBB 72%,#D8957B 100%);
+  background-size:180% 100%;background-position:0% 0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 12px 32px -16px rgba(231,178,156,.75);
+  transition:background-position .6s ease,transform .25s ease,box-shadow .25s ease;
+}
+.btn-solid:hover{background:linear-gradient(135deg,#F7D9CB 0%,#E3A58C 45%,#F4CDBB 72%,#D8957B 100%);background-size:180% 100%;background-position:100% 0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 18px 44px -14px rgba(231,178,156,.85)}
+.btn-ghost{border-color:rgba(231,178,156,.45)}
+.nav .btn{padding:11px 20px;font-size:11.5px}
+.tab[aria-selected="true"],.filter[aria-pressed="true"]{
+  color:var(--text);border-color:rgba(231,178,156,.35);
+  background:linear-gradient(180deg,#B8173A 0%,#7A0E24 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -6px 14px rgba(0,0,0,.25),0 0 26px -10px rgba(231,178,156,.55);
+}
+.filter[aria-pressed="true"] b{color:var(--blush)}
+.link{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+
+/* glass: wine-tinted with a lacquer highlight along the top edge */
+.glass{box-shadow:inset 0 1px 0 rgba(255,220,205,.06)}
+
+/* About: arched portrait, like the reference's hero arch */
+.portrait{border-radius:999px 999px var(--r-md) var(--r-md)}
+
+/* featured offer: blush panel */
+.offers .offer:nth-child(2){
+  position:relative;overflow:hidden;isolation:isolate;border-color:transparent;
+  background:linear-gradient(135deg,#F7E0D7 0%,#EBC3B6 30%,#F4D6CB 55%,#E4B3A5 80%,#F2D1C5 100%);
+  background-size:240% 240%;background-position:0% 0%;
+  box-shadow:0 30px 70px -40px rgba(231,178,156,.6);
+}
+.offers .offer:nth-child(2){transition:transform .35s ease}
+.offers .offer:nth-child(2) > *:not(.sheen){position:relative;z-index:1}
+.offer .sheen{
+  position:absolute;top:-30%;bottom:-30%;left:0;width:60%;z-index:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,0) 30%,rgba(255,250,246,.75) 50%,rgba(255,255,255,0) 70%,transparent 100%);
+  mix-blend-mode:soft-light;transform:translateX(-120%) skewX(-12deg);
+}
+.offers .offer:nth-child(2) .kind{color:#7A1A2C}
+.offers .offer:nth-child(2) h4,.offers .offer:nth-child(2) .claim{color:var(--wine-ink)}
+.offers .offer:nth-child(2) ul.ticks li{color:#5A2A32}
+.offers .offer:nth-child(2) ul.ticks li::before{background:#9E1230}
+.offers .offer:nth-child(2) .note{color:#6B3A40;border-top-color:rgba(42,7,16,.14)}
+.offers .offer:nth-child(2) .link{color:#8E1030}
+
+/* `.work-card p` was outranking `.eyebrow` and blowing the label up to body size */
+.work-card .eyebrow{font-size:10.5px;line-height:1.7;padding-right:72px}
+.offers{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){ .offers{grid-template-columns:1fr} }
+
+/* hero seal: rotating type ring, desktop only */
+.seal{position:absolute;right:var(--gutter);bottom:clamp(56px,8vw,96px);width:clamp(150px,15vw,200px);z-index:1;pointer-events:none}
+.seal svg{display:block;width:100%;height:auto;overflow:visible}
+
+/* inquiry: wide panel with the lacquered-cherry arch */
+.inq-panel{
+  display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,5vw,64px);align-items:center;
+  padding:clamp(28px,5vw,64px);border-radius:28px;border:1px solid var(--red-line);
+  background:radial-gradient(90% 120% at 100% 50%,rgba(158,18,48,.32),transparent 60%),linear-gradient(160deg,rgba(46,15,24,.78),rgba(22,7,11,.72));
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:inset 0 1px 0 rgba(255,220,205,.07),0 40px 100px -60px rgba(158,18,48,.9);
+}
+.inq-copy{display:grid;gap:22px;justify-items:start}
+.inq-copy h2{max-width:14ch}
+.inq-art{
+  justify-self:end;width:min(300px,100%);aspect-ratio:3/4;position:relative;overflow:hidden;
+  border-radius:999px 999px 22px 22px;border:1px solid rgba(231,178,156,.4);
+  box-shadow:0 30px 80px -30px rgba(158,18,48,.9),0 0 0 8px rgba(231,178,156,.05);
+}
+.inq-art img{position:absolute;inset:-6%;width:112%;height:112%;max-width:none;object-fit:cover;object-position:50% 40%;display:block}
+.inq-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(22,7,11,.55));pointer-events:none}
+
+.inq-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.copy-mail{
+  display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 8px 0 20px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(231,178,156,.4);background:rgba(22,7,11,.4);color:var(--text);
+  font-family:var(--body);font-size:14.5px;letter-spacing:.02em;
+  transition:border-color .25s ease,background .25s ease;
+}
+.copy-mail:hover,.copy-mail:focus-visible{border-color:var(--red-bright);background:rgba(158,18,48,.25)}
+.copy-lbl{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wine-ink);
+  background:var(--blush);border-radius:999px;padding:8px 14px;
+}
+.copy-mail.copied .copy-lbl{background:var(--red-bright)}
+
+@media (max-width:900px){
+  .nav{position:relative;top:auto}   /* the wrapped phone nav is ~210px tall; sticky, it covered a quarter of the screen */
+  .seal{display:none}
+  .inq-panel{grid-template-columns:1fr}
+  .inq-art{justify-self:center;width:min(240px,80%);order:-1}
+}
+</style>
+
+<div class="smoke" aria-hidden="true">
+  <div class="smoke-layer" id="smokeA"></div>
+  <div class="smoke-layer smoke-b" id="smokeB"></div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><i></i>Kim Creative</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#platform-playbook">Playbook</a>
+      <a href="#sample-data">Data</a>
+      <a href="#inquiry">Inquiry</a>
+    </nav>
+    <a class="btn btn-solid" href="#inquiry">Get a free audit ↗</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Psychology-first social media strategist · Working remotely</p>
+      <h1>Strategy people understand.<br><em>Creative they can feel.</em></h1>
+      <p class="sub">I study why people <b>stop, save and message</b>, then build your content around it.</p>
+      <p class="lede">For founders and growing brands who are done with random posting. I plan the strategy and make the content, so your marketing stays clear and unmistakably human.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#work">Explore selected work ↓</a>
+        <a class="btn btn-ghost" href="#inquiry">Tell me what you're building ↗</a>
+      </div>
+      <p class="hero-stat"><b>3 years</b> turning positioning into content <span class="rd">·</span> <b>50+ brands</b> guided</p>
+    </div>
+  </div>
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <defs><path id="sealPath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+      <circle cx="100" cy="100" r="97" fill="none" stroke="rgba(231,178,156,.38)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(231,178,156,.24)" stroke-width="1"/>
+      <g id="sealRing">
+        <text fill="#E7B29C" font-family="Jost, Futura, sans-serif" font-size="12.5" font-weight="500" letter-spacing="3">
+          <textPath href="#sealPath" textLength="486" lengthAdjust="spacing">STRATEGY WITH PULSE ✦ KIM CREATIVE ✦ </textPath>
+        </text>
+      </g>
+      <text x="100" y="118" text-anchor="middle" fill="#E7B29C" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="56">K</text>
+    </svg>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The work behind the work</p>
+      <h2 class="big">Positioning <span class="rd">→</span> Story <span class="rd">→</span> Action</h2>
+      <p class="lede">Every asset has a job. Every message earns its place.</p>
+    </div>
+    <div class="thesis-grid">
+      <article class="glass card c-4">
+        <span class="step-n">01</span>
+        <h3 class="mid">Find the tension</h3>
+      </article>
+      <article class="glass card c-4">
+        <span class="step-n">02</span>
+        <h3 class="mid">Build the angle</h3>
+      </article>
+      <article class="glass card c-4 quote-card">
+        <p>Not content for<br>content's sake.</p>
+      </article>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <ul>
+        <li>Creative strategy</li><li>Content systems</li><li>Conversion copy</li><li>Ad creative</li><li>Voice of customer</li>
+        <li>Creative strategy</li><li>Content systems</li><li>Conversion copy</li><li>Ad creative</li><li>Voice of customer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="portrait" id="portrait">
+      <img id="portraitPhoto" src="kim-hero.jpg" alt="Kim, in a crimson printed headscarf and sunglasses, leaning against a stool outside a brick-fronted cafe.">
+      <div class="art-tint"></div>
+      <div class="art-vignette"></div>
+      <span>Kim · Psychology-first strategist</span>
+    </div>
+    <div>
+      <p class="eyebrow">The person behind the strategy</p>
+      <h2 class="big" style="margin:16px 0 22px">I make the message <em class="rd">make sense.</em></h2>
+      <p class="lede">I'm Kim, a psychology-first social media strategist. I study why people stop scrolling, save a post, or message a brand they've never bought from, then turn that into content for your business. I handle both sides: the strategy behind the posts and the posts themselves.</p>
+      <p class="pull">Strategic enough to build the framework. Creative enough to break it.</p>
+      <div class="social-block" style="margin-top:28px">
+        <p class="eyebrow">Find me on</p>
+        <div class="social">
+          <a href="https://www.instagram.com/kimsangcap_creativealchemist/" target="_blank" rel="noopener noreferrer"><img src="social/instagram.jpg" alt=""><span class="vh">Instagram</span></a>
+          <a href="https://www.tiktok.com/@kimcreativealchemist" target="_blank" rel="noopener noreferrer"><img src="social/tiktok.jpg" alt=""><span class="vh">TikTok</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">01</span> &nbsp;Ways to work together</p>
+      <h2 class="big">Not more noise.<br><span class="rd">A sharper reason to care.</span></h2>
+      <p class="lede">I build the thinking behind your content, then make and manage the content itself.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Service areas">
+      <button class="tab" role="tab" id="tab-strategy" aria-controls="p-strategy" aria-selected="true">Strategy</button>
+      <button class="tab" role="tab" id="tab-content" aria-controls="p-content" aria-selected="false">Content</button>
+      <button class="tab" role="tab" id="tab-conversion" aria-controls="p-conversion" aria-selected="false">Conversion</button>
+    </div>
+
+    <div class="glass panel" role="tabpanel" id="p-strategy" aria-labelledby="tab-strategy">
+      <div>
+        <span class="step-n">01 · Clarity before output</span>
+        <h3 class="mid">Brand-to-Content Strategy</h3>
+        <p class="lede">For brands that have outgrown 'just post consistently.' We find the message, audience tension, content roles, and campaign direction before deciding what to make.</p>
+      </div>
+      <ul class="ticks">
+        <li>Positioning &amp; audience research</li>
+        <li>Content pillars with conversion intent</li>
+        <li>Creative testing map</li>
+        <li>90-day strategic direction</li>
+      </ul>
+    </div>
+
+    <div class="glass panel" role="tabpanel" id="p-content" aria-labelledby="tab-content" hidden>
+      <div>
+        <span class="step-n">02 · Made, posted, managed</span>
+        <h3 class="mid">Content Creation &amp; Management</h3>
+        <p class="lede">The strategy turned into real posts every week. I design, edit, write, schedule and reply, so your feed stays consistent without you running it.</p>
+      </div>
+      <ul class="ticks">
+        <li>Reels, carousels &amp; statics made in Canva and CapCut</li>
+        <li>Hooks, scripts &amp; captions</li>
+        <li>Scheduling, posting &amp; community management</li>
+        <li>Weekly recap of what is working</li>
+      </ul>
+    </div>
+
+    <div class="glass panel" role="tabpanel" id="p-conversion" aria-labelledby="tab-conversion" hidden>
+      <div>
+        <span class="step-n">03 · Make the next step obvious</span>
+        <h3 class="mid">Conversion Copy &amp; Ad Creative</h3>
+        <p class="lede">Clear, specific language for moments where attention needs to become action—without stripping the voice or overselling the outcome.</p>
+      </div>
+      <ul class="ticks">
+        <li>Landing page &amp; funnel copy</li>
+        <li>Meta and TikTok ad creative concepts</li>
+        <li>Email &amp; SMS sequences</li>
+        <li>Testing and message iteration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">02</span> &nbsp;Selected concept work</p>
+      <h2 class="big">The design catches the eye.<br><span class="rd">The thinking holds it.</span></h2>
+      <p class="lede">Five self-initiated case studies built to show the strategic decisions behind the surface. No borrowed metrics. No pretend client results.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter work">
+      <button class="filter" data-cat="all" aria-pressed="true">All work <b>05</b></button>
+      <button class="filter" data-cat="brand" aria-pressed="false">Brand strategy <b>02</b></button>
+      <button class="filter" data-cat="systems" aria-pressed="false">Content systems <b>05</b></button>
+      <button class="filter" data-cat="conversion" aria-pressed="false">Conversion <b>04</b></button>
+    </div>
+    <div class="work-grid" id="workGrid">
+      <article class="glass work-card" data-cat="brand systems">
+        <span class="idx">01</span>
+        <p class="eyebrow">Concept study · Leadership brand · Positioning</p>
+        <h3>Lumen House</h3>
+        <p>Positioned Maya Reyes as the calm, clear alternative to performative leadership—then translated that point of view into a recognizable content and offer system.</p>
+        <div class="chips"><span class="chip">Founder positioning</span><span class="chip">Editorial system</span><span class="chip">Offer journey</span></div>
+        <a class="link" href="#inquiry">Ask me about this one ↗</a>
+      </article>
+      <article class="glass work-card" data-cat="brand systems conversion">
+        <span class="idx">02</span>
+        <p class="eyebrow">Concept study · Cleaning service · Trust funnel</p>
+        <h3>Freshspace</h3>
+        <p>Turned "we clean spaces" into a clearer promise: cleaner environments that help people live and work better—supported by proof, education, and direct-response content.</p>
+        <div class="chips"><span class="chip">Message hierarchy</span><span class="chip">Trust content</span><span class="chip">Lead generation</span></div>
+        <a class="link" href="freshspace.html">Read the case study ↗</a>
+      </article>
+      <article class="glass work-card" data-cat="systems conversion">
+        <span class="idx">03</span>
+        <p class="eyebrow">Concept study · Dental clinic · Patient journey</p>
+        <h3>BrightSmile</h3>
+        <p>Built a patient-friendly content mix that moves from reassurance and useful education to treatment proof and low-friction appointment prompts.</p>
+        <div class="chips"><span class="chip">Patient education</span><span class="chip">Proof content</span><span class="chip">Booking CTA</span></div>
+        <a class="link" href="#inquiry">Ask me about this one ↗</a>
+      </article>
+      <article class="glass work-card" data-cat="systems conversion">
+        <span class="idx">04</span>
+        <p class="eyebrow">Curated feed study · Sports lifestyle · Social concepts</p>
+        <h3>Courtside Social</h3>
+        <p>A six-post feed study exploring how racquet-sport content can balance product desire, beginner energy, community, lifestyle, consistency, and pattern-interrupt creative.</p>
+        <div class="chips"><span class="chip">Content variety</span><span class="chip">Community energy</span><span class="chip">Visual system</span></div>
+        <a class="link" href="#inquiry">Ask me about this one ↗</a>
+      </article>
+      <article class="glass work-card" data-cat="systems conversion">
+        <span class="idx">05</span>
+        <p class="eyebrow">Paid creative studies · Consumer products · Paid creative</p>
+        <h3>Product Creative Lab</h3>
+        <p>Two attention-first ad routes that make the product impossible to miss: one built on a familiar emergency-device visual, the other on exaggerated scale and movement.</p>
+        <div class="chips"><span class="chip">Pattern interrupt</span><span class="chip">Product framing</span><span class="chip">Ad creative</span></div>
+        <a class="link" href="#inquiry">Ask me about this one ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">03</span> &nbsp;From idea to useful system</p>
+      <h2 class="big">Clear thinking.<br><span class="rd">Then the good stuff.</span></h2>
+      <p class="lede">A collaborative process designed to get us out of vague territory quickly—and into work your audience can recognize themselves in.</p>
+    </div>
+    <div class="proc">
+      <article class="glass card"><span class="step-n">01</span><h4>Listen closely</h4><p>Business context, customer language, existing signals, and the real friction under the brief.</p></article>
+      <article class="glass card"><span class="step-n">02</span><h4>Find the angle</h4><p>Positioning, message hierarchy, content roles, and a strategic idea strong enough to hold the work.</p></article>
+      <article class="glass card"><span class="step-n">03</span><h4>Build the system</h4><p>Concepts, copy, creative direction, and an operating rhythm your brand can keep using.</p></article>
+      <article class="glass card"><span class="step-n">04</span><h4>Learn &amp; sharpen</h4><p>Review the signal, refine the creative, and make the next decision with better information.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Four ways to start</p>
+      <h2 class="big">Not one price. <span class="rd">Four ways in.</span></h2>
+      <p class="lede">Pick the entry point that matches where you are, from a free audit to a partner who runs your social.</p>
+    </div>
+    <div class="path">
+      <span><b>01</b> See it clearly</span><span class="rd">→</span>
+      <span><b>02</b> Position it intentionally</span><span class="rd">→</span>
+      <span><b>03</b> Build the foundation</span><span class="rd">→</span>
+      <span><b>04</b> Keep it moving</span>
+    </div>
+    <div class="offers">
+      <article class="glass offer">
+        <span class="kind">01 · Free</span>
+        <h4>Free Social Presence Audit</h4>
+        <p class="claim">Send your page link. Get a clear list of what to fix first.</p>
+        <ul class="ticks"><li>Profile positioning</li><li>Content direction</li><li>Visual consistency</li><li>Messaging &amp; audience connection</li></ul>
+        <p class="note">Free, no strings attached.</p>
+        <a class="link" href="#inquiry">Get my free audit ↗</a>
+      </article>
+      <article class="glass offer featured" id="featuredOffer">
+        <span class="sheen" aria-hidden="true"></span>
+        <span class="kind">02 · Core</span>
+        <h4>Positioning + Creative Direction</h4>
+        <p class="claim">Make the brand feel like the business it's becoming.</p>
+        <ul class="ticks"><li>Positioning &amp; message clarity</li><li>Brand voice direction</li><li>Content pillars &amp; creative territories</li><li>Visual/content direction</li></ul>
+        <p class="note">Not a rebrand—helping an already-built business become more intentional and recognizable in how it shows up.</p>
+        <a class="link" href="#inquiry">Let's talk ↗</a>
+      </article>
+      <article class="glass offer">
+        <span class="kind">03 · Foundation</span>
+        <h4>30-Day Strategic Content Plan</h4>
+        <p class="claim">A month of content with a reason behind it.</p>
+        <ul class="ticks"><li>30-day content map with weekly themes</li><li>Campaign &amp; offer angles</li><li>Reel concepts, hooks &amp; CTA direction</li><li>Repurposing opportunities</li></ul>
+        <p class="note">You're not buying 30 posts. You're buying 30 days of strategic direction.</p>
+        <a class="link" href="#inquiry">Let's talk ↗</a>
+      </article>
+      <article class="glass offer">
+        <span class="kind">04 · Partnership</span>
+        <h4>90-Day Content &amp; Social Management</h4>
+        <p class="claim">Strategy and execution in one place.</p>
+        <ul class="ticks"><li>Monthly strategy &amp; content calendar</li><li>Content made in Canva &amp; CapCut</li><li>Scheduling, posting &amp; community management</li><li>Weekly recap &amp; monthly performance review</li></ul>
+        <p class="note">I plan it, make it, post it and report on it. You approve, I handle the rest.</p>
+        <a class="link" href="#inquiry">Let's talk ↗</a>
+      </article>
+    </div>
+    <p class="most">Most people start with the free audit.</p>
+  </div>
+</section>
+
+
+<section class="section" id="platform-playbook">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Kim Creative / Platform strategy · Seven ways to win</p>
+      <h2 class="big">Same message.<br><span class="rd">Seven different games.</span></h2>
+      <p class="lede">Every platform rewards a different behavior. Here's how the strategy changes to win on each one.</p>
+    </div>
+    <div class="plat">
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/threads.jpg" alt="Threads tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>Threads</h4>
+        <p class="way"><b>The way in:</b> Hook the pain, not the product.</p>
+        <ul>
+          <li>Open with a line that names a specific pain tied to the offer, not the offer itself</li>
+          <li>Keep the caption link-free so reach isn't suppressed</li>
+          <li>Drop the link in the first comment once people are already engaged and replying</li>
+          <li>Reply to real replies — Threads rewards back-and-forth, not broadcast</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/facebook.jpg" alt="Facebook tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>Facebook</h4>
+        <p class="way"><b>The way in:</b> Belong before you sell.</p>
+        <ul>
+          <li>Native video and carousels outperform outbound links in the feed</li>
+          <li>Post inside relevant groups first, page second</li>
+          <li>Let a pinned comment carry the offer or link, not the caption</li>
+          <li>Lean on trust signals — reviews, before/afters, real names</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/linkedin.jpg" alt="LinkedIn tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>LinkedIn</h4>
+        <p class="way"><b>The way in:</b> Lead with expertise, not personality.</p>
+        <ul>
+          <li>First two lines are the whole hook — everything after "see more" only gets read if those earn the click</li>
+          <li>Native documents and carousel PDFs keep people dwelling inside the post</li>
+          <li>Comments in the first 60 minutes matter more than likes — end on a real question</li>
+          <li>Keep the link out of the post itself, drop it in the first comment</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/instagram.jpg" alt="Instagram tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>Instagram</h4>
+        <p class="way"><b>The way in:</b> Win the first three seconds, then win the save.</p>
+        <ul>
+          <li>Reels get discovered, carousels get saved — build for both</li>
+          <li>Hook in the first frame, payoff by the third</li>
+          <li>Caption carries the story, "link in bio" carries the action</li>
+          <li>Stories carry urgency and behind-the-scenes</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/youtube.jpg" alt="YouTube tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>YouTube</h4>
+        <p class="way"><b>The way in:</b> The thumbnail sells the click, the first 15 seconds sell the watch.</p>
+        <ul>
+          <li>Title and thumbnail are the whole pitch before anyone sees a frame</li>
+          <li>Structure for retention, not just information</li>
+          <li>Shorts feed discovery, long-form builds the relationship</li>
+          <li>The one platform where the link in the description can just be a link</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/tiktok.jpg" alt="TikTok tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>TikTok</h4>
+        <p class="way"><b>The way in:</b> Earn the algorithm, not the following.</p>
+        <ul>
+          <li>An interest graph, not a follower graph — zero followers can still reach thousands</li>
+          <li>Hook inside the first 1–2 seconds or the scroll wins</li>
+          <li>Native sounds and trends aren't optional, they're distribution</li>
+          <li>Reply to comments with a video, not just a line</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+      <article class="glass plat-card">
+        <div class="visual"><span class="badge"><img src="social/pinterest.jpg" alt="Pinterest tile in the burgundy lily and gold leopard style"></span></div>
+        <h4>Pinterest</h4>
+        <p class="way"><b>The way in:</b> Build for search, not for the scroll.</p>
+        <ul>
+          <li>Behaves like a search engine — keyword-rich pins surface for months, not hours</li>
+          <li>Idea Pins for discovery, static Pins for evergreen search traffic</li>
+          <li>The one platform where a direct clickable link on the pin is expected</li>
+          <li>Design for saves — a pin's job is to be revisited</li>
+        </ul>
+        <a class="link" href="#inquiry">See the strategy ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sample-data">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Kim Creative / Reporting · Sample dashboard</p>
+      <h2 class="big">Read the signal.<br><span class="rd">Make the next move.</span></h2>
+      <p class="lede">A sample of how I organize performance, interpret the content, and turn the numbers into a practical next test.</p>
+      <p><span class="flag">Illustrative data · Not client results</span></p>
+    </div>
+
+    <div class="kpis">
+      <div class="glass kpi"><span class="k">Reach</span><span class="v">24,800</span><span class="s">Unique accounts · demo</span></div>
+      <div class="glass kpi"><span class="k">Engagements</span><span class="v">1,240</span><span class="s">Interactions · demo</span></div>
+      <div class="glass kpi"><span class="k">Link clicks</span><span class="v">310</span><span class="s">Outbound clicks · demo</span></div>
+      <div class="glass kpi"><span class="k">Inquiries</span><span class="v">18</span><span class="s">Reported inquiries · demo</span></div>
+    </div>
+
+    <div class="data-grid">
+      <article class="glass card">
+        <h3 class="mid">Are people choosing to save?</h3>
+        <p class="lede" style="margin-top:12px">Weekly saves, shown as counts across a four-week demo period.</p>
+        <div class="bars">
+          <div class="bar-row"><span>Week 1</span><span class="bar"><i style="width:52.5%"></i></span><span class="n">42</span></div>
+          <div class="bar-row"><span>Week 2</span><span class="bar"><i style="width:80%"></i></span><span class="n">64</span></div>
+          <div class="bar-row"><span>Week 3</span><span class="bar"><i style="width:92.5%"></i></span><span class="n">74</span></div>
+          <div class="bar-row"><span>Week 4</span><span class="bar"><i style="width:100%"></i></span><span class="n">80</span></div>
+        </div>
+        <p class="footnote">Total saves: 260. Saves show interest in returning to content; they do not establish sales impact.</p>
+      </article>
+
+      <article class="glass card">
+        <h3 class="mid">From observation to action</h3>
+        <ul class="steps" style="display:grid;gap:16px;margin-top:16px">
+          <li style="color:var(--muted)"><span class="step-n" style="margin-bottom:4px">Observation</span>Educational content has the highest save rate in this sample: 130 saves ÷ 8,000 reached = 1.63%.</li>
+          <li style="color:var(--muted)"><span class="step-n" style="margin-bottom:4px">Working hypothesis</span>Practical explanations may be useful enough to revisit. The dataset alone cannot explain why.</li>
+          <li style="color:var(--muted)"><span class="step-n" style="margin-bottom:4px">Next test</span>Publish two educational Reels on the same topic, vary the opening hook, and compare saves per account reached over the same seven-day window.</li>
+        </ul>
+      </article>
+    </div>
+
+    <article class="glass card" style="margin-top:18px">
+      <h3 class="mid">Content mix / Demo performance</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th scope="col">Content role</th><th scope="col">Posts</th><th scope="col">Reach*</th><th scope="col">Saves</th><th scope="col">Save rate</th></tr></thead>
+          <tbody>
+            <tr><td>Awareness</td><td>4</td><td>12,000</td><td>90</td><td>0.75%</td></tr>
+            <tr><td>Education</td><td>4</td><td>8,000</td><td>130</td><td>1.63%</td></tr>
+            <tr><td>Offer</td><td>2</td><td>6,000</td><td>40</td><td>0.67%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">All values are fictional and provided to demonstrate reporting structure. Save rate = saves ÷ reach × 100, rounded to two decimals. *Reach can overlap across content roles and should not be summed as unique accounts. Weekly and content-role saves both total 260. Replace this dataset with verified results and a defined reporting period before using it as client proof.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="inquiry">
+  <div class="wrap">
+    <div class="inq-panel">
+      <div class="inq-copy">
+        <span class="avail"><span class="dot"></span> Open for select projects</span>
+        <h2 class="big">Your business already has something <span class="rd">worth saying.</span></h2>
+        <p class="lede">Let's make it easier for the right people to notice, understand, and choose it. Send me your page link for a free audit.</p>
+        <div class="inq-actions">
+          <a class="btn btn-solid" id="mailBtn" href="mailto:hellokimcreativeideas@gmail.com?subject=Free%20audit%20request">Get my free audit ↗</a>
+          <button class="copy-mail" type="button" id="copyMail" aria-describedby="copyStatus">
+            <span class="mail-addr" id="mailText">hellokimcreativeideas@gmail.com</span><span class="copy-lbl" aria-hidden="true">Copy</span>
+          </button>
+          <span class="vh" id="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+        <p class="footnote">Typically responds within 24 hours.</p>
+      </div>
+      <div class="inq-art" aria-hidden="true"><img id="cherryImg" src="cherries.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="#top" style="margin-bottom:10px"><i></i>Kim Creative</a>
+      <p>Social strategy · Content creation · Conversion copy</p>
+      <p style="margin-top:6px">Independent strategist · Based in Tarlac, working with brands remotely</p>
+      <div class="social-block" style="margin-top:20px">
+        <div class="social">
+          <a href="https://www.instagram.com/kimsangcap_creativealchemist/" target="_blank" rel="noopener noreferrer"><img src="social/instagram.jpg" alt=""><span class="vh">Instagram</span></a>
+          <a href="https://www.tiktok.com/@kimcreativealchemist" target="_blank" rel="noopener noreferrer"><img src="social/tiktok.jpg" alt=""><span class="vh">TikTok</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="#platform-playbook">Platform playbook ↗</a>
+      <a href="#sample-data">Sample reporting ↗</a>
+      <a href="freshspace.html">Freshspace case study ↗</a>
+    </div>
+    <p>© 2026 Kim Creative</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ---------- interactions (work with or without GSAP) ---------- */
+(function(){
+  function animateIn(el){
+    if (!window.gsap || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.fromTo(el, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true });
+  }
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(o){
+        var sel = o === t;
+        o.setAttribute('aria-selected', sel ? 'true' : 'false');
+        var panel = document.getElementById(o.getAttribute('aria-controls'));
+        if (!panel) return;
+        panel.hidden = !sel;
+        if (sel) animateIn(panel);
+      });
+    });
+  });
+
+  var filters = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#workGrid .work-card'));
+  filters.forEach(function(f){
+    f.addEventListener('click', function(){
+      var cat = f.dataset.cat, shown = [];
+      filters.forEach(function(o){ o.setAttribute('aria-pressed', o === f ? 'true' : 'false'); });
+      cards.forEach(function(c){
+        var keep = cat === 'all' || (' ' + c.dataset.cat + ' ').indexOf(' ' + cat + ' ') > -1;
+        c.hidden = !keep;
+        if (keep) shown.push(c);
+      });
+      if (window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.fromTo(shown, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power2.out', overwrite: true });
+      }
+    });
+  });
+})();
+
+/* ---------- copy email (email links don't open for every visitor, so the address is always one tap away) ---------- */
+(function(){
+  var btn = document.getElementById('copyMail');
+  if (!btn) return;
+  var addr = document.getElementById('mailText');
+  var lbl = btn.querySelector('.copy-lbl');
+  var status = document.getElementById('copyStatus');
+  function done(msg){
+    lbl.textContent = msg; status.textContent = msg === 'Copied' ? 'Email address copied' : 'Email address selected';
+    btn.classList.add('copied');
+    setTimeout(function(){ lbl.textContent = 'Copy'; btn.classList.remove('copied'); status.textContent = ''; }, 2200);
+  }
+  function selectIt(){
+    var r = document.createRange(); r.selectNodeContents(addr);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    done('Selected');
+  }
+  btn.addEventListener('click', function(){
+    var text = addr.textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ window.getSelection().removeAllRanges(); done('Copied'); }, selectIt);
+    } else { selectIt(); }
+  });
+})();
+
+/* ---------- motion layer (GSAP) ---------- */
+(function(){
+  if (!window.gsap) return;            /* page is complete and readable without it */
+  gsap.defaults({ duration: 0.6, ease: 'power2.out' });
+  var hasST = !!window.ScrollTrigger;
+  if (hasST) gsap.registerPlugin(ScrollTrigger);
+
+  var mm = gsap.matchMedia();
+
+  /* Elements that also carry a CSS `transition: transform` would lag behind GSAP's
+     per-frame values; switch that transition off while GSAP is driving them. */
+  function hush(){ this.targets().forEach(function(el){ el.style.transition = 'none'; }); }
+  function unhush(){ this.targets().forEach(function(el){ el.style.transition = ''; }); }
+
+  /* Everything below runs only when the visitor has not asked for reduced motion.
+     matchMedia reverts every tween and ScrollTrigger it created if that changes. */
+  mm.add('(prefers-reduced-motion: no-preference)', function(){
+
+    /* 1. Opening sequence */
+    var intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    intro
+      .from('.nav-in > *', { autoAlpha: 0, y: -12, duration: 0.6, stagger: 0.06, onStart: hush, onComplete: unhush })
+      .from('.hero .eyebrow', { autoAlpha: 0, y: 14, duration: 0.6 }, 0.15)
+      .from('.hero h1', { autoAlpha: 0, y: 28, duration: 0.95 }, '-=0.3')
+      .from('.hero .sub', { autoAlpha: 0, y: 18, duration: 0.7 }, '-=0.6')
+      .from('.hero .lede', { autoAlpha: 0, y: 18, duration: 0.7 }, '-=0.5')
+      .from('.hero-cta .btn', { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.08, onStart: hush, onComplete: unhush }, '-=0.45')
+      .from('.hero-stat', { autoAlpha: 0, y: 12, duration: 0.6 }, '-=0.4')
+      .from('.seal', { autoAlpha: 0, scale: 0.9, duration: 1.2, ease: 'power2.out' }, 0.5);
+
+    /* 1b. Page smoke: two copies of the same frame drifting on long, unequal clocks.
+           `lighten` means the overlap never brightens past one layer's own ceiling,
+           which is what keeps the contrast budget intact. */
+    gsap.set('#smokeA', { scale: 1.08, transformOrigin: '50% 50%' });
+    gsap.set('#smokeB', { scaleX: -1.22, scaleY: 1.22, transformOrigin: '50% 50%' });
+    gsap.to('#smokeA', { yPercent: -6, xPercent: 3, scale: 1.2, duration: 42, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('#smokeB', { yPercent: 7, xPercent: -4, rotation: 3, duration: 57, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('#smokeB', { opacity: 0.42, duration: 11, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    /* 3b. Hero seal turns slowly; the cherries breathe like wet lacquer */
+    gsap.to('#sealRing', { rotation: 360, svgOrigin: '100 100', duration: 40, repeat: -1, ease: 'none' });
+    gsap.fromTo('#cherryImg', { yPercent: -2, scale: 1 }, { yPercent: 2, scale: 1.05, duration: 6.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    /* 3c. Featured offer: the blush flows like poured satin, and a band of light
+           crosses it every few seconds, the way light runs over lacquered cherries. */
+    gsap.to('#featuredOffer', { backgroundPosition: '100% 100%', duration: 9, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.timeline({ repeat: -1, repeatDelay: 2.6, delay: 1.2 })
+      .fromTo('#featuredOffer .sheen', { xPercent: -120, skewX: -12 }, { xPercent: 260, skewX: -12, duration: 1.7, ease: 'power2.inOut' });
+    gsap.fromTo('#featuredOffer',
+      { boxShadow: '0 30px 70px -40px rgba(231,178,156,.45)' },
+      { boxShadow: '0 34px 90px -34px rgba(231,178,156,.85)', duration: 3.2, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    /* 4. Availability dot */
+    gsap.to('.dot', { scale: 1.4, autoAlpha: 0.55, transformOrigin: '50% 50%', duration: 1.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    /* 5. Service marquee */
+    gsap.to('.marquee ul', { xPercent: -50, duration: 34, ease: 'none', repeat: -1 });
+
+    /* 6. Scroll reveals */
+    if (hasST) {
+      gsap.utils.toArray('.section .sec-head').forEach(function(head){
+        gsap.from(head, {
+          autoAlpha: 0, y: 26, duration: 0.85, ease: 'power3.out',
+          scrollTrigger: { trigger: head, start: 'top 88%', once: true }
+        });
+      });
+
+      ['.thesis-grid .card', '#workGrid .work-card', '.proc .card', '.offers .offer',
+       '.plat .plat-card', '.kpis .kpi', '.data-grid .card'].forEach(function(sel){
+        var items = gsap.utils.toArray(sel);
+        if (!items.length) return;
+        gsap.set(items, { autoAlpha: 0, y: 24 });
+        ScrollTrigger.batch(items, {
+          start: 'top 92%', once: true,
+          onEnter: function(batch){
+            gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out', overwrite: 'auto', onStart: hush, onComplete: unhush });
+          }
+        });
+      });
+    }
+
+    return function(){ /* matchMedia reverts the tweens above automatically */ };
+  });
+
+  /* Desktop-only parallax on the About portrait; reverted automatically below 901px */
+  if (hasST) {
+    mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', function(){
+      gsap.set('#portraitPhoto', { scale: 1.12, transformOrigin: '50% 50%' });
+      gsap.fromTo('#portraitPhoto',
+        { yPercent: -3 },
+        { yPercent: 3, ease: 'none',
+          scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
+    });
+  }
+})();
+</script>
+
+
+</body></html>
